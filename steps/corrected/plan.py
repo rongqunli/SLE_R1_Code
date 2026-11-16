@@ -213,7 +213,25 @@ STAGES = [
         "script": FIG + "/figures/02_figure5.R",
         "engine": "R",
         "depends": ["sc_unified_ifn", "sc_tensor_atlas", "sc_atlas_export"],
-        "outputs": [FIG + "/work/Figure5.pdf"],
+        "outputs": [
+            FIG + "/work/Figure5.pdf",
+            FIG + "/work/Figure5.png",
+            *[
+                FIG + "/figures/Figure5_panels/" + name + extension
+                for name in [
+                    "Figure5A_PBMC_atlas",
+                    "Figure5B_Circular_HD_SLE_for_AI",
+                    "Figure5B_Circular_HD_for_AI",
+                    "Figure5B_Circular_SLE_for_AI",
+                ]
+                for extension in [".pdf", ".png"]
+            ],
+            *[
+                FIG + "/figures/Figure5_panels/Figure5" + panel + extension
+                for panel in "CDEFG"
+                for extension in [".pdf", ".png"]
+            ],
+        ],
     },
     {
         "id": "figure6_9",
@@ -280,5 +298,8 @@ R_PACKAGES = [
     "viridis",
     "ragg",
     "MASS",
+    "circlize",
+    "ggunchull",
+    "png",
 ]
-PY_PACKAGES = ["numpy", "pandas", "scipy", "statsmodels", "matplotlib", "reportlab", "pypdf"]
+PY_PACKAGES = ["numpy", "pandas", "scipy", "statsmodels", "matplotlib", "reportlab", "pypdf", "pypdfium2", "Pillow"]
