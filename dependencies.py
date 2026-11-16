@@ -17,11 +17,14 @@ PYTHON_PACKAGES = {
     "numpy": "2.4.6",
     "openpyxl": "3.1.5",
     "pandas": "3.0.3",
+    "Pillow": "13.0.0",
     "pypdf": "6.13.3",
+    "pypdfium2": "5.13.0",
     "reportlab": "4.4.9",
     "scipy": "1.18.1",
     "statsmodels": "0.15.0",
 }
+PYTHON_IMPORTS = {"Pillow": "PIL"}
 
 
 def python_binary(root):
@@ -44,8 +47,8 @@ def execute(command, **kwargs):
 def python_check(python):
     program = (
         "import sys,json,importlib,importlib.metadata as m; names="
-        + repr(list(PYTHON_PACKAGES))
-        + "; out={'python':sys.version.split()[0],'packages':{}}\nfor name in names:\n try:\n  version=m.version(name);importlib.import_module(name);out['packages'][name]={'version':version,'loadable':True}\n except Exception as error:out['packages'][name]={'version':None,'loadable':False,'error':str(error)}\nprint(json.dumps(out))"
+        + repr({name: PYTHON_IMPORTS.get(name, name) for name in PYTHON_PACKAGES})
+        + "; out={'python':sys.version.split()[0],'packages':{}}\nfor name,module in names.items():\n try:\n  version=m.version(name);importlib.import_module(module);out['packages'][name]={'version':version,'loadable':True}\n except Exception as error:out['packages'][name]={'version':None,'loadable':False,'error':str(error)}\nprint(json.dumps(out))"
     )
     result = execute([python, "-c", program], capture_output=True, timeout=120)
     if result.returncode:

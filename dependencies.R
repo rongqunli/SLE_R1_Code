@@ -7,6 +7,14 @@ repository = c("https://github.com/bioc/AnnotationDbi","https://github.com/bioc/
 revision = c("ffdaf5d5dda16995f1afb7276be8f96cf738e16b","880562b42a0cf2c190b461c045198463232a6305","","","","","","","39ca8d490be562462f4dfa9b7a159de0508c189c","","4d114560bbd24031448e1984b110267be513df36","","","","","","","","","","af0343acbb3998d2d2bb3e3d259bbee17a2c8a7e","","","b7862b78985f52670a13ca46abacb7831e33d5e1","","","","","","","","","","","","1c4b97114f1fd662b4a4b609cba4ebab72654822","","","","","","4091b221b6a3177013e0d1e1a52fc5619c3771e6","","","","9d37a5cafc27aa820e8f9e28972306ef77a277b7","","",""),
 category = c("BioCsoft","BioCsoft","BioCann","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCexp","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCann","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCann","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft","BioCsoft")
 )
+manifest <- rbind(manifest, data.frame(
+    package = c("ggunchull", "png"),
+    expected = c("1.0.1", "0.1-9"),
+    source = c("github", "cran"),
+    repository = c("https://github.com/sajuukLyu/ggunchull", ""),
+    revision = c("282c549e4b27dc3a58d37e6dafb9e3f0a34de899", ""),
+    category = c("BioCsoft", "BioCsoft")
+))
 args <- commandArgs(trailingOnly = TRUE)
 values <- function(prefix) sub(paste0("^", prefix), "", args[startsWith(args, prefix)])
 install <- "--install" %in% args
